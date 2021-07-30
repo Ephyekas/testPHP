@@ -1,33 +1,34 @@
 <?php
-require('./class_vehicule.php');
+    //appel du fichier class.php qui contient la classe Vehicule
+    //require est équivalent à include
+    include './vehicule.php';
+    //création d'un nouveau véhicule depuis la classe Vehicule
+    $voiture = new Vehicule();
+    //ajout de valeur aux attributs de la classe Vehicule
+    $voiture->nomVehicule = "Audi A3";
+    $voiture->nbrRoue = 4;
+    $voiture->vitesse = 250;
+    //utilisation de la méthode démarrer
+    $voiture->demarrer();
+    
+    $moto = new Vehicule();
+    $moto->nomVehicule = "Honda";
+    $moto->nbrRoue = 2;
+    $moto->vitesse = 280;
 
-$voiture = new Vehicule();     
-//ajout de valeur aux attributs de la classe Vehicule     
-$voiture->nomVehicule = "Mercedes CLK";     
-$voiture->nbrRoue = 4;  
-$voiture->vitesse = 250;   
-//utilisation de la méthode démarrer     
-$voiture->detect();
+    $detect1 = $moto->detect();
+    $detect2 = $voiture->detect();
 
-echo '<p> Test Vehicule '.$voiture->nomVehicule.'est :'.$voiture->detect().'</p>';
-
-
-$moto = new Vehicule();     
-//ajout de valeur aux attributs de la classe Vehicule     
-$moto->nomVehicule = "Honda CBR";     
-$moto->nbrRoue = 2;  
-$moto->vitesse = 280;   
-//utilisation de la méthode démarrer     
-$moto->detect();
-
-echo '<p> Test Vehicule '.$moto->nomVehicule.'est :'.$moto->detect().'</p>';
-
-$moto->boost();
-
-echo '<p> Test '.$moto->nomVehicule.'avec une vitesse augmenté des 50  = '.$moto->boost().'</p>';
-
-$Vehicule()->plusRapide();
-
-echo ' le Vehicule le plus rapide est : '.$vitesse->plusRapide().'</p>';
-
+    echo"$detect1";
+    echo"$detect2";
+    
+    $voiture->boost();
+    $moto->boost();
+    echo"<p>$voiture->vitesse</p>";
+    echo"<p>$moto->vitesse</p>";
+    $rapid =plusRapide($moto, $voiture);    
+    echo "$rapid";
+    //version 2
+    $rapid2 = $voiture->plusRapideClass($moto, $voiture);
+    echo "$rapid2";
 ?>

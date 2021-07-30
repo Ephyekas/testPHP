@@ -1,62 +1,92 @@
 <?php
+    class Vehicule{
+         /*-----------------------------------------------------
+                            attributs :
+        -----------------------------------------------------*/
+        /**
+         *  @var string tag utilisé le nom du véhicule
+         */
+        public $nomVehicule ;
+        /**
+         * @var int tag utilisé pour le nombre de roues du véhicule
+         */
+        public $nbrRoue;
+        /**
+         * @var int tag utilisé pour stocker la vitesse du véhicule
+         */
+        public $vitesse ;
+        /*-----------------------------------------------------
+                            Constructeur :
+        -----------------------------------------------------*/
 
-use function PHPSTORM_META\type;
+        /*-----------------------------------------------------
+                            Getter and Setter :
+        -----------------------------------------------------*/
 
-class Vehicule{          
-/*-----------------------------------------------------  
-                           Attributs :         
------------------------------------------------------*/ 
-        public $nomVehicule ;         
-        public $nbrRoue;         
-        public $vitesse ;         
-/*-----------------------------------------------------      
-                       Fonctions :         
------------------------------------------------------*/         
-//fonction démarrer le véhicule         
-    public function detect(){             
-        if ($this->nbrRoue === 2){
-            $type = "Ce véhicule est une moto";
-        }  
-            
-        else if ($this->nbrRoue === 4){
-            $type = "Ce véhicule est une voiture"; 
+        /*-----------------------------------------------------
+                            Fonctions :
+        -----------------------------------------------------*/
+        //fonction demarrer le vehicule
+        public function demarrer(){
+            echo "<p>Démarrage de la $this->nomVehicule Vrooom !!!!</p>";
         }
-        else {
-            $type = "Nous ne connaissons pas ce type de véhicule";
-        }
-            return $type;
-        }    
-            
-            
-    public function boost(){
-        $vitesse50 = $this->vitesse+50;
-
-        return $vitesse50;
-
-    }
-
-    public function plusRapide(){
-        foreach ($this->Vehicule as $clef => $valeur){
-            
-            echo $clef. ' => ' .$valeur. '<br>';
-            
-            foreach ($this->vitesse as $v => $val){
-                $i = 0;
-                if ($val > $i ){
-                    $i = $val;
-                    return $i;
-                }
-
+        /**
+         * @return string $result retourne le type de véhicule
+         */
+        //fonction détection du type de véhicule
+        public function detect(){
+            //récupération du nombre de roues de l'objet
+            $nbrRoue = $this->nbrRoue;
+            //test si c'est une voiture
+            if($nbrRoue == 4){
+                $result ='<p>c\'est une voiture</p>';
+                return $result;
             }
+            //test si c'est une moto
+            else{
+                $result = '<p>c\'est une moto</p>';
+                return $result;
+            }            
         }
+        //fonction ajouter 50 à la vitesse d'un véhicule
+        public function boost(){
+            $this->vitesse+=50;
+        } 
+        public function plusRapideClass($a,$b){
+            $vehicule1 = $a->nomVehicule;
+            $vehicule2 = $b->nomVehicule;
+            $result="";
+            //test de la vitesse
+            if($a->vitesse>$b->vitesse)
+            {   
+                $result ="<p>le véhicule le plus rapide est : $vehicule1</p>";
+            }
+            else
+            {
+                $result =  "<p>le véhicule le plus rapide est : $vehicule2</p>";
+            }
+            return $result;
+        }        
     }
-
-     
-
-} 
-     
-
-
-     
-     
+    /**
+     * @param $a objet véhicule 1, 
+     * @param $b objet véhicule 2,
+     * @return string $result retourne le véhicule le plus rapide
+     */
+    //fonction qui retourne le véhicule le plus rapide
+    function plusRapide($a,$b){
+        $vehicule1 = $a->nomVehicule;
+        $vehicule2 = $b->nomVehicule;
+        $result="";
+        //test de la vitesse
+        if($a->vitesse>$b->vitesse)
+        {   
+            $result ="<p>le véhicule le plus rapide est : $vehicule1</p>";
+        }
+        else
+        {
+            $result =  "<p>le véhicule le plus rapide est : $vehicule2</p>";
+        }
+        return $result;
+    } 
 ?>
